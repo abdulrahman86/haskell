@@ -1,5 +1,5 @@
 (+++) :: Integer -> Integer -> Integer
----defininig an operator in haskell
+---defininig an infix operator in haskell
 x +++ y = x + y
 
 
