@@ -48,3 +48,53 @@ search xs y = [i | (x,i) <- zip xs [0..], x ==y]
 dropLst :: [a] -> Int -> [a]
 --drops first y elements in the list
 dropLst xs y = [x | (x, i) <- zip xs [0..], i >= y]
+ 
+
+takeRec :: [a] -> Int -> [a]
+--takes first i numbers from the list
+takeRec xs 0 = []
+takeRec [] i = []
+takeRec (x:xs) i = x : takeRec xs (i-1) 
+
+
+mapLst :: (a -> b) -> [a] -> [b]
+--map for lists using list comprehension
+mapLst f lst = [f a | a <- lst]
+
+mapRec :: (a -> b) -> [a] -> [b]
+
+mapRec f [] = []
+mapRec f (x:xs) =  (f x) : mapRec f xs
+
+sqLst :: Num a => [a] -> [a]
+--squaring a list using a map funciton.
+sqLst x = mapRec sq x
+    where 
+    sq :: Num a => a -> a
+    sq x = x * x 
+
+filterLst :: (a -> Bool) -> [a] -> [a]
+--filter funciton using list comprehension
+filterLst p xs = [ x | x <- xs, p x]
+
+filterRec :: (a -> Bool) -> [a] -> [a]
+--recursive filter function
+filterRec p [] = []
+filterRec p (x: xs) | p x = x : filterRec p xs
+                    | otherwise = filterRec p xs
+
+positive :: (Ord a, Num a) => [a] -> [a]
+--positive number filter
+positive xs = filterRec (>0) xs
+
+foldRec :: (a -> a -> a) -> a -> [a] -> a
+--recursive fold function
+foldRec f a [] = a
+foldRec f a (x : xs) = f x (foldRec f a xs) 
+
+sumLst :: (Num a) => [a] -> a
+sumLst xs = foldRec (+) 0 xs 
+
+concatLst :: [[a]] -> [a]
+--concat function using fold
+concatLst xs = foldRec (++) [] xs  
