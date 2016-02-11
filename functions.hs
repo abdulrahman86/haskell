@@ -35,3 +35,16 @@ zipRec (x:xs) (y:ys) = (x,y) : zip xs ys
 
 dotProd :: Num a => [a] -> [a] -> a
 dotProd xs ys = sum [x * y | (x, y) <- zip xs ys]
+
+search :: Eq a => [a] -> a -> [Int]
+--gives indexes of where element matches the list
+search xs y = [i | (x,i) <- zip xs [0..], x ==y]
+
+(!!!) :: [a] -> Int -> a
+--returns element at specified index of the list
+(x:xs) !!! i | (i == 0) = x
+             | otherwise = xs !!! (i - 1) 
+
+dropLst :: [a] -> Int -> [a]
+--drops first y elements in the list
+dropLst xs y = [x | (x, i) <- zip xs [0..], i >= y]
