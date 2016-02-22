@@ -93,8 +93,9 @@ foldRec f a [] = a
 foldRec f a (x : xs) = f x (foldRec f a xs) 
 
 sumLst :: (Num a) => [a] -> a
-sumLst xs = foldRec (+) 0 xs 
+sumLst = foldRec (+) 0
 
 concatLst :: [[a]] -> [a]
 --concat function using fold
-concatLst xs = foldRec (++) [] xs  
+concatLst = foldRec (++) []
+
