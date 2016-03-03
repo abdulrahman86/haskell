@@ -1,0 +1,108 @@
+Lecture 1a: 
+
+    - Topics : 
+        -Black box abstraction.
+        -Conventional interfaces
+            -Generic operations
+            -Large scale structure and modularity
+            -Object-oriented programming
+            -Operations on aggregates
+        -MetaLinguistic abstraction
+        -Logic Programming language (Apply eval loop)
+
+
+    - Declarative language
+    - Imperative language
+    - Process (imperative knowledge)
+    - Procedure
+    - Real problem in computers is large systems. 
+    - Techniques for controlling complexity of large systems. 
+    - Constraints in building large systems are limitations of our own minds. 
+    - Blackbox abstraction 
+        - To build bigger boxes
+        - To abstract out the strategy.  
+
+    - Primitive data, primitive procedures, procedures
+    - Procedure composition, construction of compound data
+    - Procedure definition, simple data abstraction
+    - Higher order procedures, data as procedures. 
+
+    -General framework of thinking about langauges
+        -Primitive elements
+        -means of combining those primitive elements.
+        -means of abstraction
+
+    -Combining primitive functions to make advanced functions.
+
+Lecture 1B: 
+    -Substitution model
+    -Linear Iteration space = O(1), time = O(x)
+    -Linear recursion space = O(x), time = O(x)
+
+Lecture 2A (Higher-order functions): 
+    -Encapsulation using higher order procedures.
+    -Stratchey's rights and privileges of first class citiziens
+        -To be named by variables.
+        -To be passed as arguments to procedures.
+        -To be returend as values of procedures.
+        -To be incorporated into datastructures.
+    -Having procedures as first class data allows one to make powerful abstractions which encodes general methods like newton's methods in a very clear way.
+
+Lecture 2B: 
+    -Prmitive things
+    -Means of combination
+    -Means of abstraction
+    -Higher order procedures
+    -Crucial idea: Layered system. 
+    -Divorce task of building things with task of implementing the parts.
+    -Same issues for data. 
+        -Primitive data.
+        -Compound data. Means of combination for data
+        -Methodoloy for abstraction, abstraction barriers.
+     -Strategy of wishful thinking
+
+     -Structure of compound data
+        -Construcdtors
+        -Selectors
+        -Layer of abstractions between +Rat, *Rat, -Rat and Pairs
+            is Make-Rat, Numer, Denom (Constructors and Selectors)
+        -Isolate use from representation.
+        -Why separate use from representation
+            -Alternative representations
+            -Invariants
+        -eg fractions, vectors, lines
+        -Closure.
+        -Abstract data
+        -Axioms for rationals, pairs, cons, car and cdr
+        -Blur the line between data and procedure.
+        -A procedure is a real entity
+
+Lecture 3A: 
+    -Talked about compound data.
+        -Methodology of data abstraction. Isolate use from representation
+        -Lisp way of gluing things, cons car and cdr, how cons car and cdr are implemented is
+            irrelevant. 
+        -Example : Rationals, Vectors, 
+        -Procedures could be objects, you can name them.
+        -Closure. Cons is closed under forming pairs.
+        -List : Chain of pairs.
+        -Scaling a list, map a list and scale list in terms of map.
+        -for-each function
+        -Start moving away from the control strcutures and think of operations on aggregates. (eg not relevant how map is implemented)
+        -Example
+            -List structure, issues of abstraction and representation, capturing commonality with higher order procedures. Meta linguistic abstraction. Build suitable higher order language. 
+            -When you think you of a language you think of
+                -what are the primitives
+                -means of combination
+                -wmeans of abstraction.
+                -There is no difference between procedures and data. 
+
+            -Primitive : Picture. Picture in example draws an image scaled to the specified rectanagle
+            -Primitive operations : Rotate
+
+
+
+
+
+
+    

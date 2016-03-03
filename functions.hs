@@ -99,3 +99,14 @@ concatLst :: [[a]] -> [a]
 --concat function using fold
 concatLst = foldRec (++) []
 
+
+--iterative map function
+mapItr :: (a -> b) -> [a] -> [b]
+mapItr f as = mapItrHelper f as []
+    where 
+    mapItrHelper :: (a -> b) -> [a] -> [b] -> [b]
+    mapItrHelper f [] bs = bs
+    mapItrHelper f (a : as) bs = mapItrHelper f as (bs ++ [f a]) 
+
+
+
