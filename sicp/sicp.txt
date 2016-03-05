@@ -84,6 +84,7 @@ Lecture 3A:
             irrelevant. 
         -Example : Rationals, Vectors, 
         -Procedures could be objects, you can name them.
+        -Procedular representaiton of data is called message passing.
         -Closure. Cons is closed under forming pairs.
         -List : Chain of pairs.
         -Scaling a list, map a list and scale list in terms of map.
@@ -97,8 +98,25 @@ Lecture 3A:
                 -wmeans of abstraction.
                 -There is no difference between procedures and data. 
 
-            -Primitive : Picture. Picture in example draws an image scaled to the specified rectanagle
-            -Primitive operations : Rotate
+            -Primitive : Picture. Empty, Picture in example draws an image scaled to the specified rectanagle
+            -Primitive operations : Rotate, Beside, Above, Flilp
+            -Closure property. World of picture is closed under means of combination. Like pairs are closed under cons
+            -Implementaiton of picture language
+                -Basic element: Rectangle, Origin, Horizontal part of rectangle, Vertical part of rectangle
+                -Make-Rect, Horiz, Vert, Origin
+            -Coord-map
+            -Beside procedure, Rotate procedure
+            -Using closure property. Using procedural representation to ensure closure.
+            -Picture langauge is embedded in lisp. ALl the power of lisp is automatically available to this language. 
+            -Nicely embedding a language in another language. 
+            -No difference between procedure and data.
+
+            -Henderson's example
+                -Langauge of schemes of combination - Push, Beside
+                -Langauge of Geometric positions - Rotation, beside
+                -Langauge of primitive pics - Make Rect
+                -Design problem is not implementing programs but implementing languages. 
+                
 
 
 

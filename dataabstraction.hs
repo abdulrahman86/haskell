@@ -27,3 +27,4 @@ xs `equal` ys = xs `subset` ys && ys `subset` xs
     xs `subset` ys = and [x `elem` ys | x <- xs]
 
 
+
