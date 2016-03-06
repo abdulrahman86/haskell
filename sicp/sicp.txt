@@ -100,10 +100,12 @@ Lecture 3A:
 
             -Primitive : Picture. Empty, Picture in example draws an image scaled to the specified rectanagle
             -Primitive operations : Rotate, Beside, Above, Flilp
-            -Closure property. World of picture is closed under means of combination. Like pairs are closed under cons
+            -Closure property. World of picture is closed under means of primitive combination (beside, flip-horiz, flip-vertvttvt, above) Like pairs are closed under cons
+            -Abstract typical patterns of combining painters. These procedures are ordinary scheme procedures since picture language is embedded in scheme eg. right-split, corner-split
+            -Abstract patterns of combining painter operations. We view painter operations as objects to manipulate.
             -Implementaiton of picture language
                 -Basic element: Rectangle, Origin, Horizontal part of rectangle, Vertical part of rectangle
-                -Make-Rect, Horiz, Vert, Origin
+                -Make-Rect, Horiz, Vert, Originbbyh
             -Coord-map
             -Beside procedure, Rotate procedure
             -Using closure property. Using procedural representation to ensure closure.
@@ -112,15 +114,23 @@ Lecture 3A:
             -No difference between procedure and data.
 
             -Henderson's example
-                -Langauge of schemes of combination - Push, Beside
-                -Langauge of Geometric positions - Rotation, beside
-                -Langauge of primitive pics - Make Rect
-                -Design problem is not implementing programs but implementing languages. 
-                
+                -Fundamental data abstraction is painters. 
+                -Means of combination satisfy the closure property. 
+                -Abstracting means of combination of painters.
+
+                Picture language structure
+                    -Langauge of schemes of combination - Push, Beside
+                    -Langauge of Geometric positions - Rotation, beside
+                    -Langauge of primitive pics - Make Rect
+
+                -Design problem is not implementing programs but implementing languages.
 
 
-
-
-
-
+Lecture 3B: Symbolic Differentiation; Quotation
+    -Robust systems: Insensitive to small changes. Small changes in problem should only require 
+        small change in solution
+    -Class of problems which are neighbourhood of problems are tyring to solve. 
+    -Power of embedding languages.
+    -Confuse what is procedure and what is data.
+    -Punch line: Example shows languages not only interpreted in lisp but languages that are interpreted in lisp.
     
