@@ -25,7 +25,7 @@ derivative (Var y) (Var x)
                             | y == x  = Const 1
                             | otherwise = Const 0
 
-derivative (x :+: y) (Var z) = simplify (simplify((derivative x (Var z))) :+: simplify((derivative y (Var z))))
+derivative (x :+: y) (Var z) = simplify ((derivative x (Var z)) :+: (derivative y (Var z)))
 derivative (x :*: y) (Var z) = simplify(simplify((x :*: (derivative y (Var z)))) :+: simplify((y :*: (derivative x (Var z)))))
 
 
