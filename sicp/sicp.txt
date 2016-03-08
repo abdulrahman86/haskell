@@ -133,4 +133,4 @@ Lecture 3B: Symbolic Differentiation; Quotation
     -Power of embedding languages.
     -Confuse what is procedure and what is data.
     -Punch line: Example shows languages not only interpreted in lisp but languages that are interpreted in lisp.
-    
+
