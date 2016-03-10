@@ -134,3 +134,11 @@ Lecture 3B: Symbolic Differentiation; Quotation
     -Confuse what is procedure and what is data.
     -Punch line: Example shows languages not only interpreted in lisp but languages that are interpreted in lisp.
 
+Lecture 4A: 
+    -Build a langauge to express rules that can be pattern matched. Means of interpreting that language. 
+    -Instead of writing those rules in a language that the computer can understand, bring the computer to the level of us.
+    -Trying to make a solution to a class of problems. Should be able to write rules for different problems in a generic way.
+    -Encapsulate the ideas of matching, instantiation, control structure from the rules themselves.
+     
+
+
