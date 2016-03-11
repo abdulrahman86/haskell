@@ -139,6 +139,14 @@ Lecture 4A:
     -Instead of writing those rules in a language that the computer can understand, bring the computer to the level of us.
     -Trying to make a solution to a class of problems. Should be able to write rules for different problems in a generic way.
     -Encapsulate the ideas of matching, instantiation, control structure from the rules themselves.
+
+Lecture 4B: 
+    -So far Horizontal abstraction barriers. The way you use data object from the way you implement it. 
+    -Generic operator for vertical barriers.
+    -Generic operator in haskell using type classes. 
+    -Dispatch on type (Dynamic Dispatch)
+    -Decentralized control.
+    -A package for arithmetic.
      
 
 
