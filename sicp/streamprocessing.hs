@@ -33,6 +33,17 @@ appendStream Nil y = y
 appendStream (Elem a f) y = Elem a (\_ -> appendStream (f()) y)
 
 
+takeStream :: Int -> Stream a -> Stream a
+takeStream 0 _ = Nil
+takeStream n Nil =  Nil
+takeStream n (Elem a f) = Elem a (\_ -> takeStream (n-1) (f()))
+
+--stream to list is a terminal function
+streamToList :: Stream a -> [a]
+streamToList Nil = []
+streamToList (Elem a f) = a : streamToList (f())
+
+
 
 
 --stream processing test
