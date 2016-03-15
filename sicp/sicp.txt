@@ -140,13 +140,53 @@ Lecture 4A:
     -Trying to make a solution to a class of problems. Should be able to write rules for different problems in a generic way.
     -Encapsulate the ideas of matching, instantiation, control structure from the rules themselves.
 
-Lecture 4B: 
+Lecture 4B: Generic Operators
     -So far Horizontal abstraction barriers. The way you use data object from the way you implement it. 
     -Generic operator for vertical barriers.
     -Generic operator in haskell using type classes. 
     -Dispatch on type (Dynamic Dispatch)
     -Decentralized control.
     -A package for arithmetic.
+
+Lecture 5A: Assignment, State and Side-effects
+    - Functional programs are encoding of mathematical truths.
+    - Programs are time dependent.
+    - Environment model.
+    - Bound variable and free variable.
+    - scope of a variable. 
+    - Environment, frame. 
+    - Variables are bound in environment. 
+
+Lecture 6A
+    -Assignment
+    -State
+    -Implication of assignment and state
+    -Substitution model breaks down. We have to use the environment model. 
+    -Variable is not something that stands for a value. Variable now has to 
+     somehow specify a place and the value in that place can change.
+     (F x) != (F x ) if F has side effects. Suddenly we dont have to think about values
+     but about time. 
+     -A pair is not just a car or a cdr but it has an identiy. It has an object. Two pairs that have the same car or cdr might be same or different. 
+     -Two pairs that have the same car or cdr might be same or different because suddenly we have to worry about sharing. 
+     -All of these things enter as soon as we introduce assignment.
+     -We have to think more mechanistically about our programs, its not just in terms of mathematics.
+     -Random number generator example where we put state inside random number generator and separate that from monte carlo method. 
+     -The reason we got into object oriented programming is because we want to build modular systems. Model a system that we see in the real world that relate to the real world. Like to build in the computer systems that mirror reality.
+     -Another way to decompose systems, more like signal processing engineers view of the world rather than objects that communicate via sending messages. Its called stream processing. 
+     -Stream is a data abstraction. (Cons-stream x y) (head s) (tail s)
+     -For any x and y (Head (Cons-stream x y)) will be x and 
+     -(Tail (Cons-stream x y)) will be y. 
+     -The-Empty-Stream which is empty.
+     -Stream functions. map-stream, filter-stream, accumulate, append-stream
+     -With Stream processing we are establishing conventional interfaces. 
+     -Flatten Stream of streams
+     -FlatMap of streams. Collect syntactic sugar for nested flatMaps
+     -Backtracking. 8-queens problem. 
+     -8 queens problem solution, instead of trying to model the state of each process, we model the thing as a whole.
+     -8 queens problem is an example of where the enumerator and the filter and the accumulator are mixed up.
+     -Decouple the apparent order of things in the program from the actual order of things that happen in the computer.
+     
+
      
 
 
