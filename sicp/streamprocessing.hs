@@ -44,6 +44,11 @@ streamToList Nil = []
 streamToList (Elem a f) = a : streamToList (f())
 
 
+--findFirst is a terminal function
+findFirst :: a -> (a -> Bool) -> Stream a -> a
+findFirst a _ Nil = a
+findFirst a p (Elem b f) | p b = b
+                         | otherwise = findFirst a p (f())
 
 
 --stream processing test
