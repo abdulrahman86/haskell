@@ -1,5 +1,6 @@
  --Lazy Stream ds and functions
 
+
 data Stream a = Elem a (() -> Stream a) 
               | Nil
 
@@ -42,6 +43,12 @@ takeStream n (Elem a f) = Elem a (\_ -> takeStream (n-1) (f()))
 streamToList :: Stream a -> [a]
 streamToList Nil = []
 streamToList (Elem a f) = a : streamToList (f())
+
+enumerate :: Int -> Int -> Stream Int
+
+enumerate start end = if start > end 
+                        then Nil 
+                        else Elem start (\_ -> enumerate (start + 1) end)
 
 
 --findFirst is a terminal function

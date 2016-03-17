@@ -169,12 +169,15 @@ Lecture 6A
      (F x) != (F x ) if F has side effects. Suddenly we dont have to think about values
      but about time. 
      -A pair is not just a car or a cdr but it has an identiy. It has an object. Two pairs that have the same car or cdr might be same or different. 
-     -Two pairs that have the same car or cdr might be same or different because suddenly we have to worry about sharing. 
+     -Two pairs that have the same car or cdr might be same or different because suddenly we have to worry about sharing.
+     -Have to think about programs mechanistically and not just as mathematics. 
      -All of these things enter as soon as we introduce assignment.
      -We have to think more mechanistically about our programs, its not just in terms of mathematics.
+     -The reason we got into side effects is because we wanted to build systems that seem natural.
      -Random number generator example where we put state inside random number generator and separate that from monte carlo method. 
      -The reason we got into object oriented programming is because we want to build modular systems. Model a system that we see in the real world that relate to the real world. Like to build in the computer systems that mirror reality.
-     -Another way to decompose systems, more like signal processing engineers view of the world rather than objects that communicate via sending messages. Its called stream processing. 
+     -Another way to decompose systems, more like signal processing engineers view of the world rather than objects that communicate via sending messages. Its called stream processing.
+     -Lot more commonality between programs if we throw out concern about time.
      -Stream is a data abstraction. (Cons-stream x y) (head s) (tail s)
      -For any x and y (Head (Cons-stream x y)) will be x and 
      -(Tail (Cons-stream x y)) will be y. 
