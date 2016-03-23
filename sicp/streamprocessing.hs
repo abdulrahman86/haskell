@@ -8,6 +8,8 @@ instance Show a => Show (Stream a) where
   show (Elem a f) = show a ++ "..."
 
 
+--Stream functions
+
 enumerateTreeStream :: Tree a -> Stream a
 enumerateTreeStream NilTree = Nil
 enumerateTreeStream (Node a) = makeStreamFromSingleton a
@@ -113,6 +115,14 @@ collect3Stream result as bs cs p = flatMapStream (\a ->
                                         ) bs
                               )as
 
+--interleave infinite streams
+interleaveStream :: Stream a -> Stream a -> Stream a
+interleaveStream (Elem a f1) s2 = Elem a (delay (interleaveStream s2 (f1())))
+
+processPairStream :: (a -> b -> c) -> Stream a -> Stream b -> Stream c
+processPairStream op (Elem a f1) s2 =
+  interleaveStream (mapStream (\x -> op a x) s2) (processPairStream op (f1()) s2)
+
 
 --findFirst is a terminal function
 findFirst :: a -> (a -> Bool) -> Stream a -> a
@@ -131,47 +141,88 @@ nthElem _ 0 (Elem a f) = a
 nthElem a n (Elem b f) = nthElem a (n-1) (force f) 
 
 
---sieve of eratosthenes
-
-sieve :: (Num a, Eq a, Integral a) => Stream a -> Stream a
-
-sieve Nil = Nil
-
-sieve (Elem a f) = Elem a (delay (sieve (filterStream (\ x -> x `mod` a /= 0) (force f))))
-
-fibs :: Stream Integer
-fibs = Elem 0 (delay (Elem 1 (delay (addStreams fibs (tailStream fibs)))))
-
 
 addStreams :: (Num a) => Stream a -> Stream a -> Stream a
 addStreams Nil s = s
 addStreams f Nil = f
 addStreams (Elem a f1) (Elem b f2) = Elem (a+b) (delay (addStreams (force f1) (force f2)))
 
+mulStreams :: (Num a) => Stream a -> Stream a -> Stream a
+mulStreams Nil s = Nil
+mulStreams f Nil = Nil
+mulStreams (Elem a f1) (Elem b f2) = Elem (a * b) (delay (mulStreams (force f1) (force f2)))
 
-scaleStream :: (Integral a) => a -> Stream a -> Stream a
+
+scaleStream :: (Num a) => a -> Stream a -> Stream a
 scaleStream c = mapStream (\x -> c * x)
 
+integrate :: (Num a) => Stream a -> a -> a -> Stream a
+integrate integrand initVal delta = 
+  Elem initVal (delay  (addStreams (scaleStream delta integrand) (integrate integrand initVal delta)))
 
 
-
---stream processing test
+--streams examples
 s1 = (makeStream 5 (makeStream 4 (makeStream 3 (makeStream 2(makeStreamFromSingleton 1)))))
 s2 = filterStream (\x -> x > 2) s1
 s3 = mapStream (\ a -> a + 1) s1
 s4 = mapStream (\ a -> a + 1) s2
 s5 = s4 `appendStream` s1
+s6 = Elem 1 (delay (addStreams s6 s6))
 
+expSeriesStream = Elem [1] (delay (f (\ a b -> b : a) expSeriesStream (integersFrom 1)))
+  where f :: (a -> b -> c) -> Stream a -> Stream b -> Stream c
+        f _ Nil _ = Nil
+        f _ _ Nil = Nil
+        f op (Elem a f1) (Elem b f2) = Elem (op a b) (delay (f op (f1()) (f2())))
 
---some useful streams
 ones = Elem 1 (\_ -> ones)
 
 integers = Elem 1 (\_ -> addStreams ones integers)
 
+fibgen :: Integer -> Integer -> Stream Integer
+fibgen a b = Elem a (delay (fibgen b (a+b)))
+
+double = Elem 1 (delay (scaleStream 2 double))
+
+factorials = Elem 1 (delay (mulStreams (integersFrom 2) factorials))
+
+partialSums = Elem 1 (delay (addStreams (integersFrom 2) partialSums))
 
 
+sieve :: (Num a, Eq a, Integral a) => Stream a -> Stream a
+sieve Nil = Nil
+sieve (Elem a f) = Elem a (delay (sieve (filterStream (\ x -> x `mod` a /= 0) (force f))))
 
+fibs :: Stream Integer
+fibs = Elem 0 (delay (Elem 1 (delay (addStreams fibs (tailStream fibs)))))
 
+oddStream = Elem 1 (delay (mapStream (\x -> x + 1) evenStream))
+
+evenStream = Elem 2 (delay (mapStream (\x -> x + 3) oddStream))
+
+alternateOddStream = f (*) oddStream alternateOneStream
+  where 
+  alternateOneStream = Elem 1 (delay (scaleStream (-1) alternateOneStream))
+  f :: (a -> b -> c) -> Stream a -> Stream b -> Stream c
+  f _ Nil _ = Nil
+  f _ _ Nil = Nil
+  f op (Elem a f1) (Elem b f2) = Elem (op a b) (delay (f op (f1()) (f2())))
+
+oddEvenPair = processPairStream (\ a b -> (a,b)) oddStream evenStream
+
+integerIntegerPair = processPairStream (\ a b -> (a,b)) (integersFrom 1) (integersFrom 1)
+
+tripleStream  = processPairStream (\ c (a,b) -> (a, b, c))(integersFrom 1) (integerIntegerPair) 
+
+pairALessThanB = filterStream (\(a, b) -> a < b) integerIntegerPair
+
+pythagoreanTripleStream = filterStream (\ (a, b, c) -> a^2 + b^2 == c^2 ) (filterStream (\(a,b,c) -> a < b && b < c) tripleStream)
+
+makeAccountStream :: Integer -> Stream Integer -> Stream Integer
+makeAccountStream initBalance inputStream = 
+  Elem initBalance (delay (mapStream (\x -> (headStream inputStream) + x )
+    (makeAccountStream initBalance (tailStream inputStream))))
+--list functions
 
 flatten :: [[a]] -> [a]
 flatten [] = []

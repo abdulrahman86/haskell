@@ -184,7 +184,8 @@ Lecture 6A
      -(Tail (Cons-stream x y)) will be y. 
      -The-Empty-Stream which is empty.
      -Stream functions. map-stream, filter-stream, accumulate, append-stream
-     -With Stream processing we are establishing conventional interfaces. 
+     -With Stream processing we are establishing conventional interfaces.
+     -Streams do an on-demand incremental computation.
      -Flatten Stream of streams
      -FlatMap of streams. Collect syntactic sugar for nested flatMaps
      -Backtracking. 8-queens problem. 
@@ -204,7 +205,8 @@ Lecture 6b
     -Instead of recursively defined procedures we have recursively defined data objects.
     -Normal order language vs Applicative order language.
     -Streams for chezaro
-    -Message processing view of bank account. Stream view of bank account. 
+    -Message processing view of bank account. Stream view of bank account.
+    -It is because of user's temporal existence that user associates state with the world. if the user could step back, user would notice it is just a stream and the system is stateless. 
      
 
      
